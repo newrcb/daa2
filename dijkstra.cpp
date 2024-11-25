@@ -1,7 +1,6 @@
 #include <iostream>
 #include <climits>
 using namespace std;
-// Function to find the vertex with the minimum distance
 int minDistance(int dist[], bool sptSet[], int V) {
     int min = INT_MAX, minIndex;
     for (int v = 0; v < V; v++) {
@@ -12,11 +11,9 @@ int minDistance(int dist[], bool sptSet[], int V) {
     }
     return minIndex;
 }
-// Function to implement Dijkstra's Algorithm
 void dijkstra(int graph[][100], int V, int src) {
-    int dist[V];         // Distance array
-    bool sptSet[V];      // Shortest path tree set
-    // Initialize distances and sptSet
+    int dist[V];   
+    bool sptSet[V]; 
     for (int i = 0; i < V; i++) {
         dist[i] = INT_MAX;
         sptSet[i] = false;
@@ -41,7 +38,7 @@ int main() {
     int V;
     cout << "Enter the number of vertices: ";
     cin >> V;
-    int graph[100][100]; // Assuming max size of graph as 100x100
+    int graph[100][100];
     cout << "Enter the adjacency matrix (use 0 for no connection):" << endl;
     for (int i = 0; i < V; ++i) {
         for (int j = 0; j < V; ++j) {
