@@ -1,21 +1,16 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-// Structure to represent an item with value and weight
 struct Item {
     int value, weight;
     double ratio;
     Item(int v = 0, int w = 0) : value(v), weight(w), ratio((double)v / w) {}
 };
-// Comparator function to sort items based on value/weight ratio
 bool compare(Item a, Item b) {
     return a.ratio > b.ratio;
 }
-// Function to solve the Fractional Knapsack Problem
 double fractionalKnapsack(int W, int n, Item items[]) {
-    // Sort items based on value/weight ratio
     sort(items, items + n, compare);
-
     double maxValue = 0.0;
     for (int i = 0; i < n; ++i) {
         if (W >= items[i].weight) {
