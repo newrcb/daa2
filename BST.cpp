@@ -1,16 +1,11 @@
 #include <iostream>
 using namespace std;
-
-// Define the structure for a node in the BST
 struct Node {
     int data;
     Node* left;
     Node* right;
-    
     Node(int value) : data(value), left(nullptr), right(nullptr) {}
 };
-
-// Insert a value into the BST
 Node* insert(Node* root, int value) {
     if (!root) {
         return new Node(value);
@@ -22,8 +17,6 @@ Node* insert(Node* root, int value) {
     }
     return root;
 }
-
-// Search for a value in the BST
 bool search(Node* root, int value) {
     if (!root) {
         return false;
@@ -36,16 +29,12 @@ bool search(Node* root, int value) {
         return search(root->right, value);
     }
 }
-
-// Find the minimum value node in a subtree
 Node* findMin(Node* root) {
     while (root && root->left) {
         root = root->left;
     }
     return root;
 }
-
-// Delete a value from the BST
 Node* deleteNode(Node* root, int value) {
     if (!root) {
         return root;
@@ -55,7 +44,6 @@ Node* deleteNode(Node* root, int value) {
     } else if (value > root->data) {
         root->right = deleteNode(root->right, value);
     } else {
-        // Node with only one child or no child
         if (!root->left) {
             Node* temp = root->right;
             delete root;
@@ -65,15 +53,12 @@ Node* deleteNode(Node* root, int value) {
             delete root;
             return temp;
         }
-        // Node with two children: Get the inorder successor (smallest in the right subtree)
         Node* temp = findMin(root->right);
         root->data = temp->data;
         root->right = deleteNode(root->right, temp->data);
     }
     return root;
 }
-
-// Perform in-order traversal
 void inOrder(Node* root) {
     if (root) {
         inOrder(root->left);
@@ -81,17 +66,13 @@ void inOrder(Node* root) {
         inOrder(root->right);
     }
 }
-
-// Main function to test the BST operations
 int main() {
     Node* root = nullptr;
     int choice, value;
-
     while (true) {
         cout << "\n1. Insert\n2. Search\n3. Delete\n4. In-order Traversal\n5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-
         switch (choice) {
         case 1:
             cout << "Enter value to insert: ";
@@ -123,6 +104,5 @@ int main() {
             cout << "Invalid choice. Try again.\n";
         }
     }
-
     return 0;
 }
