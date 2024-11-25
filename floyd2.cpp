@@ -1,21 +1,15 @@
 #include <iostream>
 using namespace std;
 
-const int INF = 1000000000; // A large number to represent infinity
-const int MAX = 100;       // Maximum number of vertices
-
-// Function to implement Floyd-Warshall Algorithm
+const int INF = 1000000000;
+const int MAX = 100;
 void floydWarshall(int graph[MAX][MAX], int n) {
     int dist[MAX][MAX];
-
-    // Initialize the distance matrix with the input graph
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             dist[i][j] = graph[i][j];
         }
     }
-
-    // Update distances by considering intermediate vertices
     for (int k = 0; k < n; k++) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -25,8 +19,6 @@ void floydWarshall(int graph[MAX][MAX], int n) {
             }
         }
     }
-
-    // Print the shortest distance matrix
     cout << "Shortest distances between every pair of vertices:\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -39,22 +31,17 @@ void floydWarshall(int graph[MAX][MAX], int n) {
         cout << endl;
     }
 }
-
 int main() {
     int n;
     int graph[MAX][MAX];
-
     cout << "Enter the number of vertices: ";
     cin >> n;
-
     cout << "Enter the adjacency matrix (use " << INF << " for no direct edge):\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             cin >> graph[i][j];
         }
     }
-
     floydWarshall(graph, n);
-
     return 0;
 }
