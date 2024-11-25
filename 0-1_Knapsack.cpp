@@ -1,9 +1,7 @@
 #include <iostream>
 using namespace std;
-// Function to solve 0/1 Knapsack using Dynamic Programming
 int knapsack(int W, int weights[], int profits[], int n) {
-    int dp[n + 1][W + 1]; // DP table
-    // Initialize the DP table
+    int dp[n + 1][W + 1];
     for (int i = 0; i <= n; i++) {
         for (int w = 0; w <= W; w++) {
             if (i == 0 || w == 0) {
@@ -19,11 +17,9 @@ int knapsack(int W, int weights[], int profits[], int n) {
 }
 int main() {
     int n, W;
-    // Input number of items
     cout << "Enter the number of items: ";
     cin >> n;
     int weights[n], profits[n];
-    // Input weights and profits
     cout << "Enter the weights of the items: ";
     for (int i = 0; i < n; i++) {
         cin >> weights[i];
@@ -32,10 +28,8 @@ int main() {
     for (int i = 0; i < n; i++) {
         cin >> profits[i];
     }
-    // Input capacity of the knapsack
     cout << "Enter the capacity of the knapsack: ";
     cin >> W;
-    // Calculate and display the maximum profit
     cout << "Maximum value in Knapsack: " << knapsack(W, weights, profits, n) << endl;
     return 0;
 }
