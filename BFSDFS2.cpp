@@ -10,7 +10,7 @@ void bfs(int start, int graph[26][26], int n) {
     while (!q.empty()) {
         int current = q.front();
         q.pop();
-        cout << char(current + 'A') << " ";
+        cout << current << " ";
         for (int i = 0; i < n; ++i) {
             if (graph[current][i] == 1 && !visited[i]) {
                 visited[i] = true;
@@ -22,7 +22,7 @@ void bfs(int start, int graph[26][26], int n) {
 }
 void dfs(int start, int graph[26][26], bool visited[26], int n) {
     visited[start] = true;
-    cout << char(start + 'A') << " ";
+    cout << start << " ";
     for (int i = 0; i < n; ++i) {
         if (graph[start][i] == 1 && !visited[i]) {
             dfs(i, graph, visited, n);
@@ -34,23 +34,20 @@ int main() {
     int edges;
     cout << "Enter the number of edges: ";
     cin >> edges;
-    cout << "Enter the edges (e.g., A B for an edge between A and B):" << endl;
+    cout << "Enter the edges (e.g., 0 1 for an edge between node 0 and node 1):" << endl;
     for (int i = 0; i < edges; ++i) {
-        char u, v;
+        int u, v;
         cin >> u >> v;
-        int uIndex = u - 'A';
-        int vIndex = v - 'A';
-        graph[uIndex][vIndex] = 1;
-        graph[vIndex][uIndex] = 1;
+        graph[u][v] = 1;
+        graph[v][u] = 1;
     }
-    char startNode;
+    int startNode;
     cout << "Enter the starting node: ";
     cin >> startNode;
-    int startIndex = startNode - 'A';
     cout << "BFS from node " << startNode << ": ";
-    bfs(startIndex, graph, 26);
+    bfs(startNode, graph, 26);
     cout << "DFS from node " << startNode << ": ";
     bool visited[26] = {false};
-    dfs(startIndex, graph, visited, 26);
+    dfs(startNode, graph, visited, 26);
     return 0;
 }
